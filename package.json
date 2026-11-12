@@ -1,0 +1,20 @@
+{
+  "name": "ai-support-engine",
+  "version": "1.0.0",
+  "description": "Prototipo de clasificación inteligente de solicitudes de soporte.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "compare": "node scripts/compare.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
