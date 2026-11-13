@@ -1,0 +1,22 @@
+PETICION HTTP REAL - SECURITY
+Rama: feat/traditional | mode: traditional
+POST http://127.0.0.1:55271/api/analyze
+Content-Type: application/json
+
+Request:
+{
+  "message": "Recibí un correo raro pidiendo mis credenciales, parece phishing",
+  "mode": "traditional"
+}
+
+HTTP 200
+{
+  "category": "SECURITY",
+  "priority": "HIGH",
+  "response": "Su reporte de seguridad requiere revisión humana inmediata por el equipo de seguridad. No comparta contraseñas, claves ni información sensible por este medio.",
+  "requiresHumanReview": true,
+  "mode": "traditional"
+}
+
+Referencia: SECURITY / HIGH
+Categoria correcta: true; prioridad correcta: true

@@ -1,0 +1,22 @@
+PETICION HTTP REAL - ACCESS
+Rama: feat/traditional | mode: traditional
+POST http://127.0.0.1:55271/api/analyze
+Content-Type: application/json
+
+Request:
+{
+  "message": "No puedo iniciar sesión, me dice contraseña incorrecta aunque la acabo de cambiar",
+  "mode": "traditional"
+}
+
+HTTP 200
+{
+  "category": "ACCESS",
+  "priority": "MEDIUM",
+  "response": "Lamentamos el inconveniente con su acceso. Verifique sus credenciales y utilice la opción \"Recuperar contraseña\". Si su cuenta está bloqueada, solicite su restablecimiento al equipo de soporte.",
+  "requiresHumanReview": false,
+  "mode": "traditional"
+}
+
+Referencia: ACCESS / MEDIUM
+Categoria correcta: true; prioridad correcta: true
