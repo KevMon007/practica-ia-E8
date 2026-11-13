@@ -1,0 +1,22 @@
+PETICION HTTP REAL - BUG
+Rama: feat/traditional | mode: traditional
+POST http://127.0.0.1:55271/api/analyze
+Content-Type: application/json
+
+Request:
+{
+  "message": "Al dar clic en Guardar en el formulario de facturas aparece un error 500",
+  "mode": "traditional"
+}
+
+HTTP 200
+{
+  "category": "BUG",
+  "priority": "MEDIUM",
+  "response": "Gracias por reportar la falla. Para que nuestro equipo técnico pueda revisarla, envíenos los pasos para reproducirla y capturas sin información sensible.",
+  "requiresHumanReview": false,
+  "mode": "traditional"
+}
+
+Referencia: BUG / MEDIUM
+Categoria correcta: true; prioridad correcta: true

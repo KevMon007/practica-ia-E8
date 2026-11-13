@@ -1,0 +1,22 @@
+PETICION HTTP REAL - FEATURE
+Rama: feat/traditional | mode: traditional
+POST http://127.0.0.1:55271/api/analyze
+Content-Type: application/json
+
+Request:
+{
+  "message": "Sería útil poder exportar los reportes a Excel",
+  "mode": "traditional"
+}
+
+HTTP 200
+{
+  "category": "FEATURE",
+  "priority": "LOW",
+  "response": "Gracias por su sugerencia de nueva funcionalidad. El equipo de producto podrá evaluar su utilidad y viabilidad.",
+  "requiresHumanReview": false,
+  "mode": "traditional"
+}
+
+Referencia: FEATURE / LOW
+Categoria correcta: true; prioridad correcta: true

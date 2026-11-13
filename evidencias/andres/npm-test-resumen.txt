@@ -1,0 +1,25 @@
+AI Support Engine - evidencia de Andres
+Fecha de trabajo: 2026-11-12 (America/Mexico_City)
+Repositorio: KevMon007/practica-ia-E8
+Rama: feat/traditional
+Runtime: v24.19.0
+
+$ npm test -- --test-reporter=tap
+Exit code: 0
+
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 182.0348
+
+Referencia fija: 14/14 categorias correctas; 14/14 prioridades correctas.
+
+El contrato compartido de Kevin se valido en las 14 salidas.
+No se omitieron pruebas. Se utilizo el package.json original del equipo.
+Salida TAP completa: pruebas.tap
+
+HTTP: 14/14 peticiones correctas con mode traditional.
