@@ -123,3 +123,17 @@ test('devuelve el contenido cuando el proveedor responde correctamente', async (
 
   assert.equal(result, 'Contenido correcto');
 });
+
+test('reintenta una respuesta vacía y conserva la respuesta real del segundo intento', async (t) => {
+  let calls = 0;
+  mockProvider(t, async () => response(200, ++calls === 1 ? '' : 'Respuesta del segundo intento'));
+  assert.equal(await chatCompletion([]), 'Respuesta del segundo intento');
+  assert.equal(calls, 2);
+});
+
+test('dos respuestas vacías detienen los reintentos y conservan el error controlado', async (t) => {
+  let calls = 0;
+  mockProvider(t, async () => { calls++; return response(200, ''); });
+  await assert.rejects(chatCompletion([]), { code: 'LLM_EMPTY_RESPONSE', status: 502 });
+  assert.equal(calls, 2);
+});
