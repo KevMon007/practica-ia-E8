@@ -12,15 +12,20 @@ async function analyze(message) {
   const text = rules.normalize(message);
   const scores = rules.scoreCategories(text);
   const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
+  // Una categoría con más puntos no debe ocultar indicios de un incidente.
+  const securitySignal = scores.SECURITY > 0;
   const category = totalScore === 0 ? 'BUG' : rules.pickCategory(scores);
-  const priority = totalScore === 0 ? 'LOW' : rules.computePriority(category, text);
+  const priority = totalScore === 0 ? 'LOW' : rules.computePriority(securitySignal ? 'SECURITY' : category, text);
   const ambiguous = totalScore === 0 || (category === 'BUG' && rules.isVagueReport(text));
+  let response = RESPONSES[category];
+  if (securitySignal && category !== 'SECURITY') response += ' ' + RESPONSES.SECURITY;
+  if (priority === 'CRITICAL') response += CRITICAL_SUFFIX;
 
   const result = {
     category,
     priority,
-    response: RESPONSES[category] + (priority === 'CRITICAL' ? CRITICAL_SUFFIX : ''),
-    requiresHumanReview: category === 'SECURITY' || ambiguous || rules.detectInjection(text),
+    response,
+    requiresHumanReview: securitySignal || ambiguous || rules.detectInjection(text),
     mode: 'traditional'
   };
 

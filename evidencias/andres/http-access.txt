@@ -1,6 +1,6 @@
-PETICION HTTP REAL - ACCESS
-Rama: feat/traditional | mode: traditional
-POST http://127.0.0.1:55271/api/analyze
+EVIDENCIA HTTP - ACCESS
+Fecha: 2026-11-17 | Rama: feat/traditional
+POST http://127.0.0.1:59450/api/analyze
 Content-Type: application/json
 
 Request:
@@ -19,4 +19,4 @@ HTTP 200
 }
 
 Referencia: ACCESS / MEDIUM
-Categoria correcta: true; prioridad correcta: true
+Formato valido: true | Categoria correcta: true | Prioridad correcta: true
