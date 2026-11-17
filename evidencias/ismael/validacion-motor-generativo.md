@@ -1,8 +1,8 @@
 ﻿# Evidencia individual - Ismael
 ## AI Support Engine - Motor generativo NVIDIA
 
-**Fecha:** 17/11/2026  
-**Rama:** feat/generative  
+**Fecha:** 17/11/2026
+**Rama:** feat/generative
 **Responsabilidad:** Integración del motor generativo y validación del formato de salida del LLM.
 
 ### 1. Integración real con NVIDIA
