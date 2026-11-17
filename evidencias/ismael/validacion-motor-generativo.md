@@ -125,3 +125,9 @@ La API key se utiliza mediante variables de entorno. No debe incluirse en eviden
 - `scripts/run-generative-cases.js`
 - `results/nvidia/`
 - `evidencias/ismael/validacion-motor-generativo.md`
+
+### Fortalezas y limitaciones del motor generativo
+
+El motor generativo de NVIDIA logró interpretar correctamente las categorías de los casos que recibieron una respuesta válida, además de mantener la revisión humana en los incidentes de seguridad y resistir instrucciones de manipulación. Su principal fortaleza es que puede comprender solicitudes redactadas de diferentes maneras y clasificarlas con contexto.
+
+Como limitaciones, presentó respuestas vacías en dos casos de la primera ejecución y algunas diferencias al determinar la prioridad. También depende de la disponibilidad del proveedor externo, la conexión y los tiempos de respuesta, por lo que sus resultados necesitan validación y supervisión humana.
