@@ -3,48 +3,81 @@
 
 **Fecha:** 17/11/2026
 **Rama:** feat/generative
-**Responsabilidad:** Integración del motor generativo y validación del formato de salida del LLM.
+**Responsabilidad:** Integración del motor generativo NVIDIA, validación del formato de salida y pruebas del proveedor.
 
 ### 1. Integración real con NVIDIA
 
 Se implementó la conexión con NVIDIA API mediante el endpoint compatible con Chat Completions.
 
-Modelo configurado por defecto:
+**Modelo configurado:**
 `nvidia/nemotron-3.5-lightning-30b-a3b`
 
-Se comprobó la generación de respuestas reales para:
+Se realizaron solicitudes reales al proveedor y se comprobaron respuestas de las categorías ACCESS, BUG, FEATURE y SECURITY.
 
-| Caso | Categoría obtenida | Resultado |
-|---|---|---|
-| Problema de inicio de sesión | ACCESS | Correcto |
-| Aplicación se cierra al guardar | BUG | Correcto |
-| Solicitud de modo oscuro | FEATURE | Correcto |
-| Vulnerabilidad SQL injection | SECURITY | Correcto |
-| Intento de manipulación del prompt | SECURITY | Correcto |
+### 2. Evaluación de 14 escenarios reales
 
-### 2. Manejo de timeout
+Se ejecutó el script `scripts/run-generative-cases.js` con 14 solicitudes distintas.
 
-En la primera prueba ACCESS se obtuvo un error 504 (`LLM_TIMEOUT`) con el límite de 20 segundos.
+**Resultado de la primera ronda:**
+
+- Casos ejecutados: 14.
+- Correctos completamente: 10.
+- Incorrectos o con error: 4.
+- Acierto completo: 71.43 %.
+- Respuestas vacías: 2.
+- Diferencias de prioridad: 2.
+
+Los resultados se guardaron en `results/nvidia/requests/`, `results/nvidia/responses/` y `results/nvidia/summary.json`.
+
+Los casos 01 y 03 devolvieron `LLM_EMPTY_RESPONSE`.
+El caso 02 obtuvo ACCESS/MEDIUM cuando se esperaba ACCESS/HIGH.
+El caso 09 obtuvo SECURITY/HIGH cuando se esperaba SECURITY/CRITICAL.
+
+Las expectativas de categoría y prioridad fueron definidas como referencias para esta evaluación; no representan etiquetas oficiales proporcionadas por el docente.
+
+### 3. Manejo de timeout
+
+En una prueba inicial ACCESS se obtuvo un error 504 (`LLM_TIMEOUT`) con el límite de 20 segundos.
 
 Se repitió la solicitud con un límite temporal de 45 segundos y se obtuvo una respuesta válida:
 
-- Categoría: ACCESS
-- Prioridad: MEDIUM
-- Revisión humana: false
-- Modo: generative
+- Categoría: ACCESS.
+- Prioridad: MEDIUM.
+- Revisión humana: false.
+- Modo: generative.
 
-El límite temporal se restauró después de la prueba. No se modificó permanentemente la configuración.
+El límite temporal se configuró únicamente durante la prueba, sin modificar permanentemente la configuración del proyecto.
 
-### 3. Pruebas automatizadas
+### 4. Mejora del proveedor: respuesta vacía
 
-Se ejecutó `npm test`.
+Después de detectar dos respuestas vacías, se modificó `src/engines/generative/provider.js`.
 
-Resultado:
+Se incorporó un máximo de dos intentos cuando NVIDIA devuelve contenido vacío. Si el segundo intento también está vacío, se conserva el error controlado `LLM_EMPTY_RESPONSE`.
+
+No se agregaron reintentos ilimitados ni se modificaron los errores de autenticación, límite de solicitudes o conexión.
+
+**Segunda ronda de validación:**
+
+| Caso | Resultado |
+|---|---|
+| 01 - Inicio de sesión | ACCESS / MEDIUM |
+| 03 - Recuperación de perfil | ACCESS / MEDIUM |
+
+Ambos casos devolvieron respuestas válidas en la segunda ronda.
+
+Esta prueba demuestra que los escenarios pudieron completarse después del cambio, aunque no permite afirmar que el reintento interno fue necesariamente el responsable en cada ejecución, porque no se registró el número de intento utilizado.
+
+### 5. Pruebas automatizadas
+
+Se ejecutó `npm test` después de modificar el proveedor.
+
+**Resultado:**
 - 17 pruebas ejecutadas.
 - 17 aprobadas.
 - 0 fallidas.
 
 Las pruebas comprueban:
+
 - Validación del JSON generado.
 - Categorías y prioridades permitidas.
 - Longitud y tipo de los campos.
@@ -58,21 +91,37 @@ Las pruebas comprueban:
 - Timeout.
 - Respuesta correcta del proveedor.
 
-Las pruebas de errores del proveedor utilizan respuestas simuladas y no consumen solicitudes reales de NVIDIA.
+Las pruebas automatizadas del proveedor utilizan respuestas simuladas y no consumen solicitudes reales de NVIDIA.
 
-### 4. Decisión técnica
+### 6. Decisiones técnicas
 
 Se utiliza un parser que valida la respuesta del modelo antes de devolverla al sistema. Si el formato no es válido, el motor solicita una corrección una vez. Si continúa siendo inválido, devuelve un error controlado.
 
 Además, los reportes SECURITY se fuerzan a revisión humana y prioridad mínima HIGH mediante la regla del contrato.
 
-### 5. Limitaciones
+Se agregó un reintento limitado para respuestas vacías, con el objetivo de tolerar fallos transitorios del proveedor.
+
+### 7. Limitaciones
 
 - Las pruebas simuladas no demuestran la disponibilidad permanente de NVIDIA.
-- La prueba adversarial realizada es un caso concreto y no garantiza protección completa contra todos los ataques de prompt injection.
 - La clasificación depende de la respuesta del modelo y debe mantenerse validada por el contrato.
-- El primer timeout demuestra que el proveedor puede tardar más que el límite configurado.
+- Dos escenarios presentaron diferencias entre la prioridad esperada y la generada.
+- La primera ronda presentó dos respuestas vacías.
+- La segunda ronda solamente volvió a probar los casos 01 y 03; no representa una repetición completa de los 14 escenarios.
+- La prueba adversarial realizada es un caso concreto y no garantiza protección completa contra todos los ataques de prompt injection.
+- El proveedor puede tardar más que el timeout configurado.
 
-### 6. Seguridad de credenciales
+### 8. Seguridad de credenciales
 
 La API key se utiliza mediante variables de entorno. No debe incluirse en evidencias, commits ni repositorios.
+
+### 9. Archivos relacionados con mi contribución
+
+- `src/engines/generative/provider.js`
+- `src/engines/generative/prompt.js`
+- `src/engines/generative/generativeEngine.js`
+- `tests/generative-provider.test.js`
+- `tests/generative.test.js`
+- `scripts/run-generative-cases.js`
+- `results/nvidia/`
+- `evidencias/ismael/validacion-motor-generativo.md`

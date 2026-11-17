@@ -1,0 +1,9 @@
+{
+  "id": "12",
+  "message": "El sistema está lento, pero puedo continuar trabajando.",
+  "expected": {
+    "category": "BUG",
+    "priority": "MEDIUM",
+    "requiresHumanReview": false
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "02",
+  "message": "Mi cuenta fue bloqueada después de varios intentos.",
+  "expected": {
+    "category": "ACCESS",
+    "priority": "HIGH",
+    "requiresHumanReview": false
+  }
+}
