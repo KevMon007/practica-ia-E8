@@ -1,0 +1,9 @@
+{
+  "id": "11",
+  "message": "Se filtraron datos de clientes.",
+  "expected": {
+    "category": "SECURITY",
+    "priority": "CRITICAL",
+    "requiresHumanReview": true
+  }
+}

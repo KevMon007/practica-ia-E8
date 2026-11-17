@@ -1,0 +1,26 @@
+{
+  "id": "12",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "elapsed_ms": 8572,
+  "expected": {
+    "category": "BUG",
+    "priority": "MEDIUM",
+    "requiresHumanReview": false
+  },
+  "result": {
+    "category": "BUG",
+    "priority": "MEDIUM",
+    "response": "Entendemos que la lentitud del sistema está afectando su experiencia. Estamos trabajando en optimizar el rendimiento para mejorar la velocidad. Le sugerimos verificar su conexión y reiniciar la aplicación si el problema persiste.",
+    "requiresHumanReview": false,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": true,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": true,
+  "executedAt": "2026-11-17T21:28:59.385Z"
+}

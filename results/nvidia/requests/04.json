@@ -1,0 +1,9 @@
+{
+  "id": "04",
+  "message": "La aplicación se cierra al guardar un archivo.",
+  "expected": {
+    "category": "BUG",
+    "priority": "HIGH",
+    "requiresHumanReview": false
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "provider": "NVIDIA",
+  "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "total": 14,
+  "correct": 10,
+  "incorrect": 4,
+  "accuracy_percent": 71.43,
+  "results": [
+    {
+      "id": "01",
+      "proveedor": "NVIDIA",
+      "expected": {
+        "category": "ACCESS",
+        "priority": "MEDIUM",
+        "requiresHumanReview": false
+      },
+      "elapsed_ms": 26518,
+      "error": "Respuesta vacía del proveedor de IA",
+      "code": "LLM_EMPTY_RESPONSE",
+      "correct": false,
+      "executedAt": "2026-11-17T21:27:18.411Z"
+    },
+    {
+      "id": "02",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 8446,
+      "expected": {
+        "category": "ACCESS",
+        "priority": "HIGH",
+        "requiresHumanReview": false
+      },
+      "result": {
+        "category": "ACCESS",
+        "priority": "MEDIUM",
+        "response": "Entiendo que tu cuenta fue bloqueada tras varios intentos. Estamos trabajando para restablecer el acceso de manera segura.",
+        "requiresHumanReview": false,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": false,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": false,
+      "executedAt": "2026-11-17T21:27:26.867Z"
+    },
+    {
+      "id": "03",
+      "proveedor": "NVIDIA",
+      "expected": {
+        "category": "ACCESS",
+        "priority": "MEDIUM",
+        "requiresHumanReview": false
+      },
+      "elapsed_ms": 15180,
+      "error": "Respuesta vacía del proveedor de IA",
+      "code": "LLM_EMPTY_RESPONSE",
+      "correct": false,
+      "executedAt": "2026-11-17T21:27:42.050Z"
+    },
+    {
+      "id": "04",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 8794,
+      "expected": {
+        "category": "BUG",
+        "priority": "HIGH",
+        "requiresHumanReview": false
+      },
+      "result": {
+        "category": "BUG",
+        "priority": "HIGH",
+        "response": "Lamentamos que la aplicación se cierre al guardar un archivo. Este comportamiento bloquea el trabajo y estamos revisando la causa para ofrecerle una solución pronto. Le sugerimos intentar guardar en un formato diferente o reiniciar la aplicación mientras investigamos.",
+        "requiresHumanReview": false,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:27:50.848Z"
+    },
+    {
+      "id": "05",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 10197,
+      "expected": {
+        "category": "BUG",
+        "priority": "MEDIUM",
+        "requiresHumanReview": false
+      },
+      "result": {
+        "category": "BUG",
+        "priority": "MEDIUM",
+        "response": "Lamentamos que el botón de búsqueda no esté respondiendo. Estamos investigando el problema para restaurar la funcionalidad lo antes posible. Si el problema persiste, le sugerimos intentar actualizar la página o contactar al soporte técnico con más detalles.",
+        "requiresHumanReview": false,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:28:01.049Z"
+    },
+    {
+      "id": "06",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 12259,
+      "expected": {
+        "category": "BUG",
+        "priority": "CRITICAL",
+        "requiresHumanReview": false
+      },
+      "result": {
+        "category": "BUG",
+        "priority": "CRITICAL",
+        "response": "Lamentamos profundamente que todos los usuarios estén enfrentando un error 500 en producción. Nuestro equipo técnico investiga la causa y trabaja en una solución inmediata.",
+        "requiresHumanReview": false,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:28:13.311Z"
+    },
+    {
+      "id": "07",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 5627,
+      "expected": {
+        "category": "FEATURE",
+        "priority": "LOW",
+        "requiresHumanReview": false
+      },
+      "result": {
+        "category": "FEATURE",
+        "priority": "LOW",
+        "response": "Entendemos que el modo oscuro sería una mejora útil para tu experiencia. Lo anotaremos como una solicitud de funcionalidad para considerar en futuras actualizaciones. Gracias por compartir tu opinión.",
+        "requiresHumanReview": false,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:28:18.941Z"
+    },
+    {
+      "id": "08",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 11411,
+      "expected": {
+        "category": "FEATURE",
+        "priority": "LOW",
+        "requiresHumanReview": false
+      },
+      "result": {
+        "category": "FEATURE",
+        "priority": "LOW",
+        "response": "Gracias por sugerir esta funcionalidad. Consideraremos la exportación a PDF en futuras actualizaciones para mejorar tu experiencia.",
+        "requiresHumanReview": false,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:28:30.355Z"
+    },
+    {
+      "id": "09",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 7007,
+      "expected": {
+        "category": "SECURITY",
+        "priority": "CRITICAL",
+        "requiresHumanReview": true
+      },
+      "result": {
+        "category": "SECURITY",
+        "priority": "HIGH",
+        "response": "Agradecemos tu reporte sobre esta vulnerabilidad de inyección SQL. Hemos activado nuestros protocolos de seguridad para analizar y corregir el problema de inmediato.",
+        "requiresHumanReview": true,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": false,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": false,
+      "executedAt": "2026-11-17T21:28:37.364Z"
+    },
+    {
+      "id": "10",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 7029,
+      "expected": {
+        "category": "SECURITY",
+        "priority": "HIGH",
+        "requiresHumanReview": true
+      },
+      "result": {
+        "category": "SECURITY",
+        "priority": "HIGH",
+        "response": "Lamentamos que haya recibido un correo sospechoso. Le recomendamos no hacer clic en enlaces ni proporcionar información y reportar el incidente al equipo de seguridad de inmediato.",
+        "requiresHumanReview": true,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:28:44.395Z"
+    },
+    {
+      "id": "11",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 6413,
+      "expected": {
+        "category": "SECURITY",
+        "priority": "CRITICAL",
+        "requiresHumanReview": true
+      },
+      "result": {
+        "category": "SECURITY",
+        "priority": "CRITICAL",
+        "response": "Lamentamos profundamente este incidente y ya hemos activado nuestros protocolos de seguridad para contener la situación. Estamos investigando el origen y tomando las medidas necesarias para proteger los datos afectados.",
+        "requiresHumanReview": true,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:28:50.811Z"
+    },
+    {
+      "id": "12",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 8572,
+      "expected": {
+        "category": "BUG",
+        "priority": "MEDIUM",
+        "requiresHumanReview": false
+      },
+      "result": {
+        "category": "BUG",
+        "priority": "MEDIUM",
+        "response": "Entendemos que la lentitud del sistema está afectando su experiencia. Estamos trabajando en optimizar el rendimiento para mejorar la velocidad. Le sugerimos verificar su conexión y reiniciar la aplicación si el problema persiste.",
+        "requiresHumanReview": false,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:28:59.385Z"
+    },
+    {
+      "id": "13",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 12841,
+      "expected": {
+        "category": "SECURITY",
+        "priority": "HIGH",
+        "requiresHumanReview": true
+      },
+      "result": {
+        "category": "SECURITY",
+        "priority": "HIGH",
+        "response": "Tomamos muy en serio el reporte de esta vulnerabilidad y la estamos evaluando según nuestros protocolos de seguridad. Se activarán las medidas correspondientes para su resolución.",
+        "requiresHumanReview": true,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:29:12.229Z"
+    },
+    {
+      "id": "14",
+      "proveedor": "NVIDIA",
+      "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "elapsed_ms": 10580,
+      "expected": {
+        "category": "SECURITY",
+        "priority": "HIGH",
+        "requiresHumanReview": true
+      },
+      "result": {
+        "category": "SECURITY",
+        "priority": "HIGH",
+        "response": "He detectado un intento de manipulación para ocultar un incidente de seguridad. Este tipo de solicitudes requiere revisión humana para garantizar la integridad de los sistemas y el cumplimiento de los protocolos.",
+        "requiresHumanReview": true,
+        "mode": "generative"
+      },
+      "checks": {
+        "category": true,
+        "priority": true,
+        "format": true,
+        "humanReview": true
+      },
+      "correct": true,
+      "executedAt": "2026-11-17T21:29:22.811Z"
+    }
+  ]
+}
