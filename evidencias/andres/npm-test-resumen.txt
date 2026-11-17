@@ -1,0 +1,17 @@
+AI SUPPORT ENGINE - ANDRES
+Fecha: 2026-11-17 | Rama: feat/traditional
+Node.js v24.19.0 | Sin APIs ni modelos generativos
+
+$ npm test -- --test-reporter=tap
+Exit code: 0
+
+# tests 62
+# pass 62
+# fail 0
+# skipped 0
+
+Referencia fija: 14/14 categorias y prioridades correctas.
+HTTP: 14/14 casos de referencia con respuesta 200.
+HTTP seguridad mixta: 7/7 regresiones correctas.
+Contrato compartido: formato valido en todas las salidas.
+Fuente completa: pruebas.tap y http-*.json.

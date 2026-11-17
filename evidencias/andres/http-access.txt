@@ -1,0 +1,22 @@
+EVIDENCIA HTTP - ACCESS
+Fecha: 2026-11-17 | Rama: feat/traditional
+POST http://127.0.0.1:59450/api/analyze
+Content-Type: application/json
+
+Request:
+{
+  "message": "No puedo iniciar sesión, me dice contraseña incorrecta aunque la acabo de cambiar",
+  "mode": "traditional"
+}
+
+HTTP 200
+{
+  "category": "ACCESS",
+  "priority": "MEDIUM",
+  "response": "Lamentamos el inconveniente con su acceso. Verifique sus credenciales y utilice la opción \"Recuperar contraseña\". Si su cuenta está bloqueada, solicite su restablecimiento al equipo de soporte.",
+  "requiresHumanReview": false,
+  "mode": "traditional"
+}
+
+Referencia: ACCESS / MEDIUM
+Formato valido: true | Categoria correcta: true | Prioridad correcta: true

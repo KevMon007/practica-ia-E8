@@ -1,8 +1,35 @@
-const { EngineError } = require('../../contracts/responseContract');
+'use strict';
 
-// STUB — Andrés reemplaza este archivo completo.
+const rules = require('./rules');
+const { RESPONSES, CRITICAL_SUFFIX } = require('./responses');
+const { EngineError, enforceSecurityReview } = require('../../contracts/responseContract');
+
 async function analyze(message) {
-  throw new EngineError('Motor tradicional no implementado aún', 501, 'NOT_IMPLEMENTED');
+  if (typeof message !== 'string') {
+    throw new EngineError('El mensaje debe ser una cadena de texto.', 400, 'INVALID_MESSAGE');
+  }
+
+  const text = rules.normalize(message);
+  const scores = rules.scoreCategories(text);
+  const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
+  // Una categoría con más puntos no debe ocultar indicios de un incidente.
+  const securitySignal = scores.SECURITY > 0;
+  const category = totalScore === 0 ? 'BUG' : rules.pickCategory(scores);
+  const priority = totalScore === 0 ? 'LOW' : rules.computePriority(securitySignal ? 'SECURITY' : category, text);
+  const ambiguous = totalScore === 0 || (category === 'BUG' && rules.isVagueReport(text));
+  let response = RESPONSES[category];
+  if (securitySignal && category !== 'SECURITY') response += ' ' + RESPONSES.SECURITY;
+  if (priority === 'CRITICAL') response += CRITICAL_SUFFIX;
+
+  const result = {
+    category,
+    priority,
+    response,
+    requiresHumanReview: securitySignal || ambiguous || rules.detectInjection(text),
+    mode: 'traditional'
+  };
+
+  return enforceSecurityReview(result);
 }
 
 module.exports = { analyze };
