@@ -1,0 +1,27 @@
+EVIDENCIA HTTP - ERRORES DE API (Kevin)
+Fecha: 2026-11-17 | Rama: feat/integration
+
+### JSON invalido
+{"error":{"code":"INVALID_JSON","message":"El cuerpo de la petición no es un JSON válido"}}
+HTTP 400
+
+### Cuerpo > 10kb
+{"error":{"code":"PAYLOAD_TOO_LARGE","message":"El cuerpo de la petición excede el límite de 10kb"}}
+HTTP 413
+
+### Mensaje vacio
+{"error":{"code":"VALIDATION_ERROR","message":"\"message\" no puede estar vacío"}}
+HTTP 400
+
+### Mensaje solo espacios
+{"error":{"code":"VALIDATION_ERROR","message":"\"message\" no puede estar vacío"}}
+HTTP 400
+
+### Mode invalido
+{"error":{"code":"VALIDATION_ERROR","message":"\"mode\" debe ser uno de: traditional, generative"}}
+HTTP 400
+
+### Valido
+{"category":"ACCESS","priority":"MEDIUM","response":"Lamentamos el inconveniente con su acceso. Verifique sus credenciales y utilice la opción \"Recuperar contraseña\". Si su cuenta está bloqueada, solicite su restablecimiento al equipo de soporte.","requiresHumanReview":false,"mode":"traditional"}
+HTTP 200
+
