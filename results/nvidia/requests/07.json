@@ -1,0 +1,9 @@
+{
+  "id": "07",
+  "message": "Quisiera agregar un modo oscuro.",
+  "expected": {
+    "category": "FEATURE",
+    "priority": "LOW",
+    "requiresHumanReview": false
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "01",
+  "message": "No puedo iniciar sesión en mi cuenta.",
+  "expected": {
+    "category": "ACCESS",
+    "priority": "MEDIUM",
+    "requiresHumanReview": false
+  }
+}

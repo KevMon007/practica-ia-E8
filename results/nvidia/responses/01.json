@@ -1,0 +1,14 @@
+{
+  "id": "01",
+  "proveedor": "NVIDIA",
+  "expected": {
+    "category": "ACCESS",
+    "priority": "MEDIUM",
+    "requiresHumanReview": false
+  },
+  "elapsed_ms": 26518,
+  "error": "Respuesta vacía del proveedor de IA",
+  "code": "LLM_EMPTY_RESPONSE",
+  "correct": false,
+  "executedAt": "2026-11-17T21:27:18.411Z"
+}

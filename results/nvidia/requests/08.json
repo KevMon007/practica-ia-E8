@@ -1,0 +1,9 @@
+{
+  "id": "08",
+  "message": "Sería útil exportar los reportes a PDF.",
+  "expected": {
+    "category": "FEATURE",
+    "priority": "LOW",
+    "requiresHumanReview": false
+  }
+}
