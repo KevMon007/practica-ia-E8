@@ -12,6 +12,37 @@ Prototipo de clasificación de solicitudes de soporte desarrollado con **Node.js
 
 El sistema recibe un mensaje, identifica su categoría, asigna una prioridad y prepara una respuesta. Ambos motores utilizan el mismo contrato JSON para permitir su comparación.
 
+## Clasificador supervisado TF-IDF
+
+El repositorio también incluye en `ml/` un clasificador entrenable basado en
+TF-IDF y regresión logística. Este componente es aprendizaje automático
+supervisado y no un LLM: aprende de un archivo `tickets.csv` con las columnas
+`message` y `category`.
+
+Instala sus dependencias y entrena el modelo:
+
+```powershell
+python -m pip install -r requirements-ml.txt
+npm run ml:train -- --data tickets.csv --message "Alguien entró a mi cuenta sin autorización"
+```
+
+El entrenamiento imprime el reporte de clasificación y guarda el pipeline en
+`models/ticket_classifier.joblib`. Para reutilizarlo sin volver a entrenar:
+
+```powershell
+npm run ml:predict -- --message "Alguien entró a mi cuenta sin autorización"
+```
+
+El CSV debe tener al menos dos ejemplos por categoría y suficientes filas para
+que cada categoría aparezca tanto en entrenamiento como en prueba. El archivo
+`tickets.csv` contiene datos de dominio y no se genera artificialmente en este
+repositorio.
+
+Este clasificador devuelve únicamente la categoría y por ahora no se expone en
+`POST /api/analyze`, cuyo contrato también exige prioridad, respuesta y revisión
+humana. Los archivos `.joblib` solo deben cargarse cuando hayan sido creados por
+el equipo; no se deben abrir modelos recibidos de fuentes no confiables.
+
 ## Contribuciones del equipo
 
 ### Juan Andrés Medina Gonzalez — Motor tradicional y casos de referencia
