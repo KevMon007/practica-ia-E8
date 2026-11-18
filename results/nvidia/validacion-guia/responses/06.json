@@ -1,0 +1,27 @@
+{
+  "id": "06",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 5797,
+  "expected": {
+    "category": "BUG",
+    "priority": "CRITICAL",
+    "requiresHumanReview": false
+  },
+  "result": {
+    "category": "BUG",
+    "priority": "CRITICAL",
+    "response": "Entendemos que todos los usuarios están experimentando un error 500 en producción. Estamos investigando activamente la causa y trabajaremos para resolverlo lo antes posible.",
+    "requiresHumanReview": false,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": true,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": true,
+  "executedAt": "2026-11-18T23:51:36.490Z"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "09",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 6706,
+  "expected": {
+    "category": "SECURITY",
+    "priority": "CRITICAL",
+    "requiresHumanReview": true
+  },
+  "result": {
+    "category": "SECURITY",
+    "priority": "HIGH",
+    "response": "Gracias por reportar esta vulnerabilidad SQL injection. La estamos tomando muy en serio y la investigamos de inmediato para garantizar la seguridad de tus datos. Este caso requiere revisión humana y será priorizado de alta importancia.",
+    "requiresHumanReview": true,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": false,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": false,
+  "executedAt": "2026-11-18T23:51:58.279Z"
+}

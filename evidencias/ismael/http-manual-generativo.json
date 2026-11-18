@@ -1,0 +1,23 @@
+{
+  "fecha": "2026-11-18",
+  "rama": "feat/llm-nvidia-module",
+  "endpoint": "POST http://localhost:3000/api/analyze",
+  "request": {
+    "message": "Alguien entró a mi cuenta sin autorización",
+    "mode": "generative"
+  },
+  "response": {
+    "category": "SECURITY",
+    "priority": "HIGH",
+    "response": "Entiendo perfectamente que alguien haya accedido a tu cuenta sin autorización es una situación seria. He activado el protocolo de seguridad y tu solicitud será revisada por nuestro equipo humano para investigar y proteger tu cuenta inmediatamente.",
+    "requiresHumanReview": true,
+    "mode": "generative"
+  },
+  "checks": {
+    "cinco_campos_del_contrato": true,
+    "sin_campos_extra": true,
+    "security_con_revision_humana": true,
+    "security_con_prioridad_minima_high": true
+  },
+  "nota": "Sin credenciales ni cabeceras de autorización en esta evidencia."
+}
