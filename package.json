@@ -11,7 +11,9 @@
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
     "test": "node --test",
-    "compare": "node scripts/compare.js"
+    "compare": "node scripts/compare.js",
+    "ml:train": "python -m ml.ticket_classifier train",
+    "ml:predict": "python -m ml.ticket_classifier predict"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
