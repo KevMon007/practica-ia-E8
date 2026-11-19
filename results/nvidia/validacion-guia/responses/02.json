@@ -1,0 +1,27 @@
+{
+  "id": "02",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 25865,
+  "expected": {
+    "category": "ACCESS",
+    "priority": "HIGH",
+    "requiresHumanReview": false
+  },
+  "result": {
+    "category": "ACCESS",
+    "priority": "MEDIUM",
+    "response": "Entiendo que tu cuenta haya sido bloqueada después de varios intentos. Esto es una medida de seguridad para proteger tus datos. Te ayudaré a recuperar el acceso de manera rápida y segura.",
+    "requiresHumanReview": false,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": false,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": false,
+  "executedAt": "2026-11-18T23:51:03.688Z"
+}

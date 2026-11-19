@@ -1,0 +1,27 @@
+{
+  "id": "01",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 6064,
+  "expected": {
+    "category": "ACCESS",
+    "priority": "MEDIUM",
+    "requiresHumanReview": false
+  },
+  "result": {
+    "category": "ACCESS",
+    "priority": "MEDIUM",
+    "response": "Entiendo que tienes problemas para acceder a tu cuenta. Te ayudaré a recuperar el acceso verificando tus credenciales o restableciendo tu contraseña.",
+    "requiresHumanReview": false,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": true,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": true,
+  "executedAt": "2026-11-18T23:50:37.816Z"
+}

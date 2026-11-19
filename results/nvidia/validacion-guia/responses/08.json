@@ -1,0 +1,27 @@
+{
+  "id": "08",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 6767,
+  "expected": {
+    "category": "FEATURE",
+    "priority": "LOW",
+    "requiresHumanReview": false
+  },
+  "result": {
+    "category": "FEATURE",
+    "priority": "LOW",
+    "response": "Entendemos que la exportación a PDF sería de gran utilidad para sus flujos de trabajo. Esta funcionalidad se encuentra en nuestra lista de mejoras y la evaluaremos en próximas actualizaciones. Gracias por compartir su sugerencia.",
+    "requiresHumanReview": false,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": true,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": true,
+  "executedAt": "2026-11-18T23:51:51.571Z"
+}

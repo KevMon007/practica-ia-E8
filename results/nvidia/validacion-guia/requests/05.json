@@ -1,0 +1,9 @@
+{
+  "id": "05",
+  "message": "El botón de búsqueda no responde.",
+  "expected": {
+    "category": "BUG",
+    "priority": "MEDIUM",
+    "requiresHumanReview": false
+  }
+}

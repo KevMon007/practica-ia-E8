@@ -1,0 +1,9 @@
+{
+  "id": "06",
+  "message": "Todos los usuarios reciben un error 500 en producción.",
+  "expected": {
+    "category": "BUG",
+    "priority": "CRITICAL",
+    "requiresHumanReview": false
+  }
+}

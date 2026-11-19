@@ -1,5 +1,13 @@
 ﻿const { EngineError } = require('../../contracts/responseContract');
 
+const DEFAULT_TIMEOUT_MS = 45000;
+const MAX_ATTEMPTS = 2;
+
+function timeoutMs() {
+  const configured = Number(process.env.LLM_TIMEOUT_MS);
+  return Number.isFinite(configured) && configured > 0 ? configured : DEFAULT_TIMEOUT_MS;
+}
+
 async function chatCompletion(messages) {
   const apiKey = process.env.NVIDIA_API_KEY;
   const baseUrl = process.env.NVIDIA_BASE_URL || 'https://integrate.api.nvidia.com/v1';
@@ -9,14 +17,9 @@ async function chatCompletion(messages) {
     throw new EngineError('Proveedor de IA no configurado', 503, 'LLM_NOT_CONFIGURED');
   }
 
-  const maxAttempts = 2;
-
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     const controller = new AbortController();
-    const timer = setTimeout(
-      () => controller.abort(),
-      Number(process.env.LLM_TIMEOUT_MS) || 20000
-    );
+    const timer = setTimeout(() => controller.abort(), timeoutMs());
 
     try {
       const res = await fetch(`${baseUrl}/chat/completions`, {
@@ -58,15 +61,13 @@ async function chatCompletion(messages) {
         return content;
       }
 
-      if (attempt === maxAttempts) {
+      if (attempt === MAX_ATTEMPTS) {
         throw new EngineError(
           'Respuesta vacía del proveedor de IA',
           502,
           'LLM_EMPTY_RESPONSE'
         );
       }
-
-      console.warn('NVIDIA devolvió contenido vacío. Reintentando una vez...');
     } catch (err) {
       if (err.name === 'AbortError') {
         throw new EngineError(
