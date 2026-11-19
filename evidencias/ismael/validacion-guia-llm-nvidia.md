@@ -13,8 +13,9 @@ Esta rama completa los puntos que la guía exige y que no estaban cubiertos:
 - Pruebas del flujo del motor (primer intento, corrección única y doble fallo).
 - Prueba explícita de prompt injection, de delimitadores y de la cadena `"false"`.
 - Prueba de HTTP 403 y de petición con temperatura baja / cabecera Bearer.
-- Script portable de casos reales: lee `.env` del proyecto y no fija el timeout por código.
-- Evidencia nueva sin sobrescribir la evaluación histórica de `results/nvidia/`.
+- Script nuevo `scripts/run-llm-validation-cases.js` para los 14 casos adicionales: lee `.env` del proyecto, no fija el timeout por código y valida `LLM_TIMEOUT_MS` con la misma regla que `provider.js` (número finito y mayor que cero; si no, 45000 ms).
+- `scripts/run-generative-cases.js` conserva su comportamiento original: usa los casos compartidos y la comparación oficial.
+- Evidencia nueva en `results/nvidia/validacion-guia/` sin sobrescribir la evaluación histórica de `results/nvidia/`.
 - Prompt con la política de datos sensibles y tiempo de espera alineado con la guía (45 s).
 
 No se modificaron `package.json`, `.env.example`, `README.md`, `ml/`, `src/contracts/**`,
@@ -65,7 +66,7 @@ Cobertura añadida sobre el estado anterior:
 Ejecutado con:
 
 ```powershell
-node scripts/run-generative-cases.js
+node scripts/run-llm-validation-cases.js
 ```
 
 Resultados guardados en `results/nvidia/validacion-guia/`:
@@ -108,14 +109,16 @@ Respuesta verificada:
 Se comprueban los cinco campos del contrato, la revisión humana obligatoria y la
 prioridad mínima `HIGH` para `SECURITY`.
 
-## 6. Riesgos conocidos y solicitudes a Kevin
+## 6. Riesgos conocidos y alcance
 
 - La prioridad generada por el modelo puede diferir de la expectativa en casos límite;
   el contrato valida el formato, no la exactitud semántica de la prioridad.
 - El proveedor externo puede agotar el tiempo de espera o devolver contenido vacío;
   hay un solo reintento ante contenido vacío y un solo reintento ante formato inválido.
-- `README.md` (archivo compartido, no modificado aquí) indica que
-  `scripts/run-generative-cases.js` escribe en `results/nvidia-reference/`. Tras ajustar
-  el script a la guía, escribe en `results/nvidia/validacion-guia/`. **Solicitud para Kevin:**
-  actualizar ese párrafo del README si se considera necesario.
+- `scripts/run-generative-cases.js` quedó restaurado a su comportamiento original, que es
+  el que usa la comparación oficial (`results/nvidia-reference/`), por lo que el README
+  compartido sigue siendo válido y no hay solicitudes pendientes para Kevin.
+- `scripts/run-llm-validation-cases.js` es un archivo nuevo añadido a petición del equipo;
+  no estaba en la lista original de archivos propiedad de Ismael de la guía, por lo que
+  queda a revisión de Kevin al integrar.
 - No se hicieron cambios en archivos de Kevin ni se fusionó su rama.
