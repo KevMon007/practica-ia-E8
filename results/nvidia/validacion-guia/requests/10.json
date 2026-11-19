@@ -1,0 +1,9 @@
+{
+  "id": "10",
+  "message": "Recibí un correo de phishing que suplanta a la empresa.",
+  "expected": {
+    "category": "SECURITY",
+    "priority": "HIGH",
+    "requiresHumanReview": true
+  }
+}

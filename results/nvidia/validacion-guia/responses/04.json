@@ -1,0 +1,27 @@
+{
+  "id": "04",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 7700,
+  "expected": {
+    "category": "BUG",
+    "priority": "HIGH",
+    "requiresHumanReview": false
+  },
+  "result": {
+    "category": "BUG",
+    "priority": "HIGH",
+    "response": "Entendemos que la aplicación se cierra al guardar un archivo y afecta tu trabajo. Estamos trabajando en una solución.",
+    "requiresHumanReview": false,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": true,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": true,
+  "executedAt": "2026-11-18T23:51:17.755Z"
+}

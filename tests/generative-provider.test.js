@@ -61,6 +61,15 @@ test('convierte HTTP 401 en error de autenticacion', async (t) => {
   });
 });
 
+test('convierte HTTP 403 en error de autenticacion', async (t) => {
+  mockProvider(t, async () => response(403));
+
+  await assert.rejects(chatCompletion([]), {
+    code: 'LLM_AUTH_ERROR',
+    status: 502
+  });
+});
+
 test('convierte HTTP 429 en error de limite', async (t) => {
   mockProvider(t, async () => response(429));
 
@@ -117,11 +126,21 @@ test('convierte timeout en error 504', async (t) => {
 });
 
 test('devuelve el contenido cuando el proveedor responde correctamente', async (t) => {
-  mockProvider(t, async () => response(200, 'Contenido correcto'));
+  let request;
+  mockProvider(t, async (_url, options) => {
+    request = options;
+    return response(200, 'Contenido correcto');
+  });
 
   const result = await chatCompletion([]);
 
   assert.equal(result, 'Contenido correcto');
+  assert.equal(request.method, 'POST');
+  assert.equal(request.headers['Content-Type'], 'application/json');
+  assert.match(request.headers.Authorization, /^Bearer /);
+
+  const body = JSON.parse(request.body);
+  assert.ok(body.temperature >= 0 && body.temperature <= 0.5);
 });
 
 test('reintenta una respuesta vacía y conserva la respuesta real del segundo intento', async (t) => {

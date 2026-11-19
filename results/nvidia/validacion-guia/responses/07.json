@@ -1,0 +1,27 @@
+{
+  "id": "07",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 8309,
+  "expected": {
+    "category": "FEATURE",
+    "priority": "LOW",
+    "requiresHumanReview": false
+  },
+  "result": {
+    "category": "FEATURE",
+    "priority": "LOW",
+    "response": "Gracias por sugerir el modo oscuro. Lo hemos registrado como una mejora para futuras actualizaciones. Mientras tanto, revisa la configuración de la aplicación para ver opciones de visualización disponibles.",
+    "requiresHumanReview": false,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": true,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": true,
+  "executedAt": "2026-11-18T23:51:44.801Z"
+}

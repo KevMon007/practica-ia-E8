@@ -1,0 +1,9 @@
+{
+  "id": "09",
+  "message": "Detecté una vulnerabilidad SQL injection.",
+  "expected": {
+    "category": "SECURITY",
+    "priority": "CRITICAL",
+    "requiresHumanReview": true
+  }
+}

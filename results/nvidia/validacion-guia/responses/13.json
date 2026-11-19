@@ -1,0 +1,27 @@
+{
+  "id": "13",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 21789,
+  "expected": {
+    "category": "SECURITY",
+    "priority": "HIGH",
+    "requiresHumanReview": true
+  },
+  "result": {
+    "category": "SECURITY",
+    "priority": "HIGH",
+    "response": "He analizado la solicitud. Al tratarse de una vulnerabilidad informática, la clasifico como prioridad HIGH y requiere revisión humana para garantizar la seguridad del sistema, según nuestros protocolos.",
+    "requiresHumanReview": true,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": true,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": true,
+  "executedAt": "2026-11-18T23:52:39.191Z"
+}

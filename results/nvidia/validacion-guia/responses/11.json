@@ -1,0 +1,27 @@
+{
+  "id": "11",
+  "proveedor": "NVIDIA",
+  "modelo": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "timeout_ms": 45000,
+  "elapsed_ms": 5294,
+  "expected": {
+    "category": "SECURITY",
+    "priority": "CRITICAL",
+    "requiresHumanReview": true
+  },
+  "result": {
+    "category": "SECURITY",
+    "priority": "CRITICAL",
+    "response": "Lamentamos profundamente este incidente. Nuestro equipo de seguridad ya trabaja para contener la situación y le mantendremos informado sobre los pasos siguientes.",
+    "requiresHumanReview": true,
+    "mode": "generative"
+  },
+  "checks": {
+    "category": true,
+    "priority": true,
+    "format": true,
+    "humanReview": true
+  },
+  "correct": true,
+  "executedAt": "2026-11-18T23:52:11.550Z"
+}

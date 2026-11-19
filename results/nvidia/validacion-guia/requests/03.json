@@ -1,0 +1,9 @@
+{
+  "id": "03",
+  "message": "Necesito recuperar el acceso a mi perfil.",
+  "expected": {
+    "category": "ACCESS",
+    "priority": "MEDIUM",
+    "requiresHumanReview": false
+  }
+}
