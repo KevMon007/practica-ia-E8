@@ -16,7 +16,7 @@ import joblib
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
@@ -61,15 +61,34 @@ class TicketClassifier:
         self.model.fit(x_train, y_train)
         self.is_fitted = True
         predictions = self.model.predict(x_test)
-        return classification_report(
+        report = classification_report(
             y_test,
             predictions,
             output_dict=True,
             zero_division=0,
         )
+        labels = sorted(data["category"].unique())
+        report["confusion_matrix"] = {
+            "labels": labels,
+            "counts": confusion_matrix(y_test, predictions, labels=labels).tolist(),
+        }
+        return report
 
     def predict(self, messages: Iterable[str]) -> list[str]:
         """Clasifica uno o más mensajes usando un modelo entrenado."""
+        return self.model.predict(self._validate_messages(messages)).tolist()
+
+    def predict_with_score(self, message: str) -> dict[str, str | float]:
+        """Devuelve la categoría predicha y su probabilidad estimada."""
+        messages = self._validate_messages([message])
+        probabilities = self.model.predict_proba(messages)[0]
+        category_index = probabilities.argmax()
+        return {
+            "prediction": str(self.model.classes_[category_index]),
+            "score": round(float(probabilities[category_index]), 3),
+        }
+
+    def _validate_messages(self, messages: Iterable[str]) -> list[str]:
         if not self.is_fitted:
             raise RuntimeError("El modelo debe entrenarse o cargarse antes de predecir.")
 
@@ -79,7 +98,7 @@ class TicketClassifier:
         ):
             raise ValueError("Se requiere al menos un mensaje de texto no vacío.")
 
-        return self.model.predict(normalized).tolist()
+        return normalized
 
     def save(self, model_path: str | Path) -> Path:
         """Guarda el pipeline entrenado en disco."""
@@ -181,10 +200,10 @@ def main() -> None:
         destination = classifier.save(args.model)
         result = {"model": str(destination), "report": report}
         if args.message:
-            result["prediction"] = classifier.predict([args.message])[0]
+            result.update(classifier.predict_with_score(args.message))
     else:
         classifier = TicketClassifier.load(args.model)
-        result = {"prediction": classifier.predict([args.message])[0]}
+        result = classifier.predict_with_score(args.message)
 
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
