@@ -42,9 +42,21 @@ npm run ml:predict -- --message "Alguien entró a mi cuenta sin autorización"
 ```
 
 El CSV debe tener al menos dos ejemplos por categoría y suficientes filas para
-que cada categoría aparezca tanto en entrenamiento como en prueba. El archivo
-`tickets.csv` contiene datos de dominio y no se genera artificialmente en este
-repositorio.
+que cada categoría aparezca tanto en entrenamiento como en prueba. Para practicar
+se incluye un dataset didáctico en `data/tickets.xlsx` y su versión CSV en
+`data/tickets.csv`: 200 mensajes etiquetados, 50 por clase (`ACCESS`, `BUG`,
+`FEATURE` y `SECURITY`), con una división orientativa de 160 entrenamiento y
+40 prueba. Son ejemplos sintéticos creados para la clase, no tickets reales ni
+datos de producción; la hoja `guia` del Excel documenta la política de
+etiquetado y las precauciones contra fugas de datos.
+
+El módulo `ml/ticket_classifier.py` realiza su propia división estratificada
+(`test_size=0.2`, `random_state=42`) y solo lee `message` y `category`, por lo
+que ignora la columna `split` del CSV. Para entrenar con el dataset incluido:
+
+```powershell
+npm run ml:train -- --data data/tickets.csv --message "Alguien entró a mi cuenta sin autorización"
+```
 
 Este clasificador devuelve únicamente la categoría y por ahora no se expone en
 `POST /api/analyze`, cuyo contrato también exige prioridad, respuesta y revisión
