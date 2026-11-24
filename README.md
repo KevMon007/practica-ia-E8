@@ -31,10 +31,13 @@ Instala sus dependencias y entrena el modelo:
 
 ```powershell
 python -m pip install -r requirements-ml.txt
-npm run ml:train -- --data tickets.csv --message "Alguien entró a mi cuenta sin autorización"
+npm run ml:train -- --data data/tickets.csv --message "Alguien entró a mi cuenta sin autorización"
 ```
 
-El entrenamiento imprime el reporte de clasificación y guarda el pipeline en
+El entrenamiento imprime el reporte de clasificación y la matriz de confusión
+en `report.confusion_matrix`. El arreglo `labels` indica el orden de las
+categorías en `counts`, con las categorías reales en las filas y las predichas
+en las columnas. El comando guarda el pipeline en
 `models/ticket_classifier.joblib`. Para reutilizarlo sin volver a entrenar:
 
 ```powershell
@@ -58,7 +61,9 @@ que ignora la columna `split` del CSV. Para entrenar con el dataset incluido:
 npm run ml:train -- --data data/tickets.csv --message "Alguien entró a mi cuenta sin autorización"
 ```
 
-Este clasificador devuelve únicamente la categoría y por ahora no se expone en
+La predicción por CLI devuelve `prediction` y `score`, la probabilidad
+estimada para esa categoría, redondeada a tres decimales. El clasificador
+supervisado por ahora no se expone en
 `POST /api/analyze`, cuyo contrato también exige prioridad, respuesta y revisión
 humana. Los archivos `.joblib` solo deben cargarse cuando hayan sido creados por
 el equipo; no se deben abrir modelos recibidos de fuentes no confiables.

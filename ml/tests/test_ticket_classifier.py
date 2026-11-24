@@ -141,6 +141,12 @@ class TicketClassifierTests(unittest.TestCase):
         self.assertEqual(trained["model"], str(model_path))
         self.assertIn("accuracy", trained["report"])
         self.assertIn(trained["prediction"], {"ACCESS", "BUG", "FEATURE", "SECURITY"})
+        matrix = trained["report"]["confusion_matrix"]
+        self.assertEqual(matrix["labels"], ["ACCESS", "BUG", "FEATURE", "SECURITY"])
+        self.assertEqual([len(row) for row in matrix["counts"]], [4, 4, 4, 4])
+        self.assertEqual(sum(map(sum, matrix["counts"])), 8)
+        self.assertGreater(trained["score"], 0)
+        self.assertLessEqual(trained["score"], 1)
         self.assertTrue(model_path.is_file())
 
         predict_result = subprocess.run(
@@ -159,7 +165,11 @@ class TicketClassifierTests(unittest.TestCase):
             text=True,
         )
         predicted = json.loads(predict_result.stdout)
-        self.assertIn(predicted["prediction"], {"ACCESS", "BUG", "FEATURE", "SECURITY"})
+        restored = TicketClassifier.load(model_path)
+        message = "quiero exportar reportes"
+        self.assertEqual(predicted["prediction"], restored.predict([message])[0])
+        expected_score = float(restored.model.predict_proba([message])[0].max())
+        self.assertEqual(predicted["score"], round(expected_score, 3))
 
 
 if __name__ == "__main__":
